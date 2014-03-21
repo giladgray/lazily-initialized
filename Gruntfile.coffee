@@ -75,6 +75,48 @@ module.exports = (grunt) ->
           processName: (filename) ->
             filename.match(/templates\/(.+)\.h[bj]s$/)[1]
 
+    # markdown:
+    #   all:
+    #     files: [
+    #       expand: true
+    #       cwd: '<%= yeoman.app %>/posts'
+    #       src: '{,*/}*.md'
+    #       dest: '<%= yeoman.temp %>/posts'
+    #       ext: '.html'
+    #     ]
+    #     options:
+    #       markdownOptions:
+    #         gfm: true
+    #         highlight: (code, lang) ->
+    #           if lang then hljs.highlight(lang, code).value
+    #           else         hljs.highlightAuto(code).value
+          # template: 'app/talk.html'
+
+    markdown:
+      options:
+        author: 'Gilad & Ilan Gray'
+        title: 'Lazily Initialized'
+        description: 'a blog about life, learning, and laziness'
+        url: 'http://lazyinit.io'
+        # layouts:
+        #   wrapper: ''
+        #   index: ''
+        #   post: ''
+        #   archive: ''
+        paths:
+          posts: '<%= yeoman.app %>/posts/*.md'
+          index: '<%= yeoman.app %>/index.html'
+          archive: '<%= yeoman.app %>/archive.html'
+
+      dev:
+        dest: '<%= yeoman.temp %>'
+        context:
+          js: ['/scripts/main.js']
+          css: ['/styles/main.css']
+
+      dist:
+        dest: '<%= yeoman.dist %>'
+
     # grunt-contrib-watch
     watch:
       coffee:
@@ -87,13 +129,13 @@ module.exports = (grunt) ->
         files: ['<%= yeoman.app %>/templates/{,*/}*.hbs']
         tasks: ['handlebars:dist']
       markdown:
-        files: ['*.md']
+        files: ['<%= yeoman.app %>/posts/{,*/}*.md','<%= yeoman.app %>/templates/{,*/}*.us']
         tasks: ['markdown']
       livereload:
         options:
           livereload: LIVERELOAD_PORT
         files: [
-          '{<%= yeoman.temp %>,<%= yeoman.app %>}/*.html'
+          '{<%= yeoman.temp %>,<%= yeoman.app %>}/{,*/}*.html'
           '{<%= yeoman.temp %>,<%= yeoman.app %>}/styles/{,*/}*.css',
           '{<%= yeoman.temp %>,<%= yeoman.app %>}/scripts/{,*/}*.js',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
@@ -111,7 +153,7 @@ module.exports = (grunt) ->
             return [
               lrSnippet
               mountFolder connect, yeoman.temp
-              mountFolder connect, yeoman.app
+              mountFolder connect, "#{yeoman.temp}/app"
             ]
       dist:
         options:
@@ -160,25 +202,6 @@ module.exports = (grunt) ->
             'styles/fonts/*'
           ]
         ]
-
-    markdown:
-      all:
-        files: [
-          {
-            expand: true
-            # cwd: '.'
-            src: '<%= yeoman.app%>/posts/**/*.md'
-            dest: '<%= yeoman.temp %>'
-            ext: '.html'
-          }
-        ]
-        options:
-          markdownOptions:
-            gfm: true
-            highlight: (code, lang) ->
-              if lang then hljs.highlight(lang, code).value
-              else         hljs.highlightAuto(code).value
-          # template: 'app/talk.html'
 
     # standard task definition looks like so:
     # <task>:

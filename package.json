@@ -20,11 +20,11 @@
     "grunt-contrib-symlink": "~0.3.0",
     "grunt-contrib-uglify": "~0.3.2",
     "grunt-contrib-watch": "~0.5.3",
-    "grunt-markdown": "~0.5.0",
     "grunt-open": "~0.2.3",
     "grunt-usemin": "~2.0.2",
     "highlight.js": "~8.0.0",
-    "matchdep": "~0.3.0"
+    "matchdep": "~0.3.0",
+    "grunt-markdown-blog": "~0.3.3"
   },
   "scripts": {
     "test": "grunt test"

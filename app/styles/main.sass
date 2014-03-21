@@ -6,3 +6,34 @@
 
   h3
     font-size: 2em
+
+  .nav
+    font-size: 2em
+    text-align: center
+    margin: 2em 0
+
+    li a:hover
+      background: #ccc
+
+.post
+  @extend .panel
+  @extend .panel-default
+
+  .title
+    @extend .panel-heading
+
+    .details
+      font-style: italic
+
+      .date
+
+      .author
+        font-weight: bold
+
+  .content
+    @extend .panel-body
+
+.archives
+  li
+    > a
+      font-size: 2em

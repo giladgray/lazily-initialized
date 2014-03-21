@@ -1,0 +1,9 @@
+<h1>The Archives</h1>
+<ul class="archives list-unstyled">
+<% _(site.posts).chain().reverse().each(function(post){ %>
+  <li>
+    <a href="/<%= post.htmlPath() %>"><%= post.title() %></a>
+    <span class="date"><%= post.date() %></span>
+  </li>
+<% }) %>
+</ul>

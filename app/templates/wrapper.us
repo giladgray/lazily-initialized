@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="<%= css %>" media="all" />
+    <link rel="alternate" type="application/rss+xml" title="<%= site.title %> - feed" href="/index.xml" />
+    <title><%= site.title %><%= post ? ' - '+post.title() : '' %></title>
+  </head>
+  <body class="container">
+    <header class="jumbotron">
+      <ul class="nav nav-pills nav-stacked pull-right">
+        <li><a href="/">home</a></li>
+        <li><a href="/archive.html">archives</a></li>
+        <li><a href="/about.html">about</a></li>
+      </ul>
+      <h1>Lazily <br> Initialized</h1>
+      <h3><%= site.description %></h3>
+    </header>
+
+    <%= yield %>
+
+    <footer>
+      Copyright <%= site.author %>, <%= new Date().getFullYear() %>.
+    </footer>
+    <script type="text/javascript" src="<%= js %>"></script>
+  </body>
+</html>
